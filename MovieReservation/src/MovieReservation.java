@@ -251,12 +251,13 @@ public class MovieReservation extends JFrame {
             if (m.category.equals("NOW") && m.statusColors[i].equals(BTN_OPEN)) {
                 final String movieName = m.title;
                 final String timeSlot = m.times[i];
+                
                 timeBtn.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        JOptionPane.showMessageDialog(contentPane, 
-                            "Selected: " + movieName + " @ " + timeSlot, 
-                            "Processing", 
-                            JOptionPane.INFORMATION_MESSAGE);
+                        SeatSelectionWindow seatWindow = new SeatSelectionWindow(movieName, timeSlot);
+                        seatWindow.setVisible(true);
+                        
+                        
                     }
                 });
             } else {
