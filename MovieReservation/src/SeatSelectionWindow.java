@@ -13,6 +13,10 @@ public class SeatSelectionWindow extends JFrame {
 
     private static HashSet<String> bookedSeats = new HashSet<>(); 
     private ArrayList<String> currentSelection = new ArrayList<>();
+    
+    // Add these instance variables
+    private String movieTitle;
+    private String showingTime;
 
     private final Color BG_DARK = new Color(30, 30, 30);
     private final Color SEAT_RED = new Color(231, 76, 60);       
@@ -26,6 +30,10 @@ public class SeatSelectionWindow extends JFrame {
     private JLabel lblSelectedSeatsDisplay;
 
     public SeatSelectionWindow(String movieTitle, String selectedTime) {
+    	// Store the values
+        this.movieTitle = movieTitle;
+        this.showingTime = selectedTime;
+        
         setTitle("Select Seats - " + movieTitle + " (" + selectedTime + ")");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setBounds(100, 100, 900, 750); 
@@ -136,6 +144,14 @@ public class SeatSelectionWindow extends JFrame {
                 
                 JOptionPane.showMessageDialog(contentPane, receipt, "Proceed to Payment", JOptionPane.INFORMATION_MESSAGE);
                 
+             // Open TicketClassification window with stored instance variables
+                TicketClassification ticketWindow = new TicketClassification(
+                    new ArrayList<>(currentSelection),
+                    movieTitle,
+                    showingTime
+                );
+                ticketWindow.setVisible(true);
+          
                 dispose();
             }
         });
